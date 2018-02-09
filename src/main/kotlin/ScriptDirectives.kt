@@ -27,6 +27,13 @@ annotation class Include(val includePath: String)
 annotation class KotlinOpts(val runOptions: String)
 
 
+@Target(AnnotationTarget.FILE)
+@Retention(AnnotationRetention.SOURCE)
+@MustBeDocumented
+@Repeatable
+annotation class CompilerOpts(val kotlincFlags: String)
+
+
 // MavenRepository and DependsOnMaven are supported "as it" for compatibility with jupyter notebooks.
 // see https://github.com/kohesive/keplin/blob/master/keplin-maven-resolver/src/main/kotlin/uy/kohesive/keplin/kotlin/script/resolver/maven/MavenResolverAnnotations.kt
 // example https://github.com/kohesive/keplin/blob/a307e05eae091c99c665fe3da52a428fb0e10a6a/keplin-maven-resolver/src/test/kotlin/uy/kohesive/keplin/kotlin/script/resolver/maven/TestMavenScriptDependencies.kt#L38
