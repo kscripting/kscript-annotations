@@ -44,5 +44,4 @@ annotation class DependsOnMaven(val artifactLocator: String)
 // in contrast to the original version we make the id mandatory here.
 // This keeps ensures compatiblity with keplin but eases parsing
 //annotation class MavenRepository(val id: String = "", val url: String)
-annotation class MavenRepository(val id: String, val url: String)
-
+annotation class MavenRepository(val id: String, val url: String, val user: String = "", val pass: String = "")
