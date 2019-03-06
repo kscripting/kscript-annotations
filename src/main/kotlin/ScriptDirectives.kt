@@ -46,7 +46,7 @@ annotation class DependsOnMaven(val artifactLocator: String)
 //annotation class MavenRepository(val id: String = "", val url: String)
 
 /**
- * Declare a maven repository that will be used by kscript to resole dependencies
+ * Declare a maven repository that will be used by kscript to resolve dependencies
  *
  * @param id A user-defined name for this repository
  * @param url The endpoint under which maven will find the repo
