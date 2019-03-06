@@ -44,4 +44,13 @@ annotation class DependsOnMaven(val artifactLocator: String)
 // in contrast to the original version we make the id mandatory here.
 // This keeps ensures compatiblity with keplin but eases parsing
 //annotation class MavenRepository(val id: String = "", val url: String)
-annotation class MavenRepository(val id: String, val url: String, val user: String = "", val pass: String = "")
+
+/**
+ * Declare a maven repository that will be used by kscript to resole dependencies
+ *
+ * @param id A user-defined name for this repository
+ * @param url The endpoint under which maven will find the repo
+ * @param user Optional user name
+ * @param password Optional password (required if user is defined)
+ */
+annotation class MavenRepository(val id: String, val url: String, val user: String = "", val password: String = "")
