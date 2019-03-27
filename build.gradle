@@ -1,8 +1,5 @@
-group = 'com.github.holgerbrandl'
-version = '1.4'
-
 buildscript {
-    ext.kotlin_version = '1.1.60'
+    ext.kotlin_version = '1.2.70'
 
     repositories {
         mavenCentral()
@@ -13,15 +10,21 @@ buildscript {
     }
 }
 
+plugins { id "com.jfrog.bintray" version "1.8.1" }
 
-apply plugin: 'java'
+//apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 
 repositories {
     mavenCentral()
+    jcenter()
 }
+
+group = 'com.github.holgerbrandl'
+version = '1.4'
 
 // should not be needed
 //dependencies {
@@ -48,8 +51,40 @@ publishing {
         maven(MavenPublication) {
             from components.java
             artifact sourcesJar { classifier "sources" }
+            artifact javadocJar
+//            artifactId = 'kscript-annotations'
+        }
+    }
+}
 
-            artifactId = 'kscript-annotations'
+
+if (hasProperty('bintray_user') && hasProperty('bintray_key')) {
+    bintray {
+
+        // property must be set in ~/.gradle/gradle.properties
+        user = bintray_user
+        key = bintray_key
+
+        publications = ['maven'] //When uploading configuration files
+
+        dryRun = false //Whether to run this as dry-run, without deploying
+        publish = true // If version should be auto published after an upload
+
+        pkg {
+            repo = 'github'
+            name = 'kscript-annotations'
+            vcsUrl = 'https://github.com/holgerbrandl/kscript-annotations'
+
+            licenses = ['MIT']
+            publicDownloadNumbers = true
+
+            //Optional version descriptor
+            version {
+                name = project.version //Bintray logical version name
+                desc = '.'
+                released = new Date()
+                vcsTag = 'v' + project.version
+            }
         }
     }
 }
