@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ##
-## Release Steps For new Annotation Support Libary Version
+## Release Steps For new Annotation Support Library Version
 ##
 
 export KANNOT_HOME="/d/projects/misc/kscript-annotations";
