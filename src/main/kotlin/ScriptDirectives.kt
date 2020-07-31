@@ -33,6 +33,12 @@ annotation class KotlinOpts(val runOptions: String)
 @Repeatable
 annotation class CompilerOpts(val kotlincFlags: String)
 
+@Target(AnnotationTarget.FILE)
+@Retention(AnnotationRetention.SOURCE)
+@MustBeDocumented
+@Repeatable
+annotation class ProguardConfig(val proguardConfig: String)
+
 
 // MavenRepository and DependsOnMaven are supported "as it" for compatibility with jupyter notebooks.
 // see https://github.com/kohesive/keplin/blob/master/keplin-maven-resolver/src/main/kotlin/uy/kohesive/keplin/kotlin/script/resolver/maven/MavenResolverAnnotations.kt
