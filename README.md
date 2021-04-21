@@ -2,7 +2,17 @@
 
 For details see https://github.com/holgerbrandl/kscript
 
-Example
+Current version: `1.2` (MavenCentral)
+
+## How to use?
+
+Simply change your gradle dependencies to include:
+
+```
+implementation 'com.github.holgerbrandl:kscript-annotations:1.2'
+```
+
+## Example
 
 ```kotlin
 #!/usr/bin/env kscript
