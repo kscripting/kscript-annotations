@@ -1,7 +1,7 @@
 # How to publish a new version?
 
 ```bash
-# cd /d/projects/misc/kscript-annotations
+# cd /d/projects/misc/kscript_annotations
  
 ./gradlew jar
 
