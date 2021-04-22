@@ -2,14 +2,14 @@
 
 For details see https://github.com/holgerbrandl/kscript
 
-Current version: `1.2` (MavenCentral)
+Current version: `1.4` (MavenCentral)
 
 ## How to use?
 
 Simply change your gradle dependencies to include:
 
 ```
-implementation 'com.github.holgerbrandl:kscript-annotations:1.2'
+implementation 'com.github.holgerbrandl:kscript-annotations:1.4'
 ```
 
 ## Example
