@@ -3,7 +3,7 @@
 ```bash
 # cd /d/projects/misc/kscript-annotations
  
-./gradlew install
+./gradlew jar
 
 ./gradlew publishToMavenLocal
 
