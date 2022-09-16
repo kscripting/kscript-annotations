@@ -1,20 +1,19 @@
 //file:noinspection DifferentKotlinGradleVersion
 buildscript {
-    ext.kotlin_version = '1.4.32'
+    ext.kotlinVersion = '1.7.10'
 
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
 
 plugins {
     id "java-library"
-//    id "application"
     id "maven-publish"
     id "signing"
     id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
@@ -33,8 +32,8 @@ java {
 }
 
 
-group = 'com.github.holgerbrandl'
-version = '1.4'
+group = 'io.github.kscripting'
+version = '1.5'
 
 
 publishing {
@@ -45,19 +44,19 @@ publishing {
             pom {
                 name = "kscript-annotations"
                 description = 'Annotation directives for kscript'
-                url = 'https://github.com/holgerbrandl/kscript'
+                url = 'https://github.com/kscripting/kscript'
 
                 licenses {
                     license {
                         name = 'MIT'
-                        url = 'https://github.com/holgerbrandl/kscript-annotations/blob/master/LICENSE.txt'
+                        url = 'https://github.com/kscripting/kscript-annotations/blob/master/LICENSE.txt'
                     }
                 }
 
 
                 scm {
-                    connection = 'scm:git:github.com/holgerbrandl/kscript-annotations.git'
-                    url = 'https://github.com/holgerbrandl/kscript-annotations.git'
+                    connection = 'scm:git:github.com/kscripting/kscript-annotations.git'
+                    url = 'https://github.com/kscripting/kscript-annotations.git'
                 }
 
 
@@ -66,6 +65,12 @@ publishing {
                         id = 'holgerbrandl'
                         name = 'Holger Brandl'
                         email = 'holgerbrandl@gmail.com'
+                    }
+
+                    developer {
+                        id.set("aartiPl")
+                        name.set("Marcin Kuszczak")
+                        email.set("aarti@interia.pl")
                     }
                 }
             }
@@ -77,9 +82,10 @@ publishing {
 nexusPublishing {
     repositories {
         sonatype {
-            snapshotRepositoryUrl = uri(project.properties["sonatypeStagingProfileId"])
-            username = project.properties["ossrhUsername"]
-            password = project.properties["ossrhPassword"]
+            nexusUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            snapshotRepositoryUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            username = project.findProperty("sonatype.user") ?: System.getenv("SONATYPE_USER")
+            password = project.findProperty("sonatype.password") ?: System.getenv("SONATYPE_PASSWORD")
         }
     }
 }
