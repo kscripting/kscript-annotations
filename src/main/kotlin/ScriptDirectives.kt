@@ -4,7 +4,7 @@
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class DependsOn(vararg val artifactLocators: String)
+annotation class DependsOn(vararg val artifactCoordinates: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
@@ -15,43 +15,58 @@ annotation class EntryPoint(val value: String)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class Include(val includePath: String)
+@Deprecated(
+    "@file:Include(paths) is deprecated in favor of @file:Import()",
+    ReplaceWith("@file:Import(paths)"),
+    DeprecationLevel.WARNING
+)
+annotation class Include(vararg val paths: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class Import(val includePath: String)
+annotation class Import(vararg val paths: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class KotlinOpts(val runOptions: String)
+@Deprecated(
+    "@file:KotlinOpts(options) is deprecated in favor of @file:KotlinOptions()",
+    ReplaceWith("@file:KotlinOptions(options)"),
+    DeprecationLevel.WARNING
+)
+annotation class KotlinOpts(vararg val options: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class KotlinOptions(val runOptions: String)
+annotation class KotlinOptions(vararg val options: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class CompilerOpts(val kotlincFlags: String)
+@Deprecated(
+    "@file:CompilerOpts(options) is deprecated in favor of @file:CompilerOptions()",
+    ReplaceWith("@file:CompilerOptions(options)"),
+    DeprecationLevel.WARNING
+)
+annotation class CompilerOpts(vararg val options: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class CompilerOptions(val kotlincFlags: String)
+annotation class CompilerOptions(vararg val options: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 @Repeatable
-annotation class Repository(val url: String)
+annotation class Repository(val url: String, val user: String = "", val password: String = "")
 
 // MavenRepository and DependsOnMaven are supported "as it" for compatibility with jupyter notebooks.
 // see https://github.com/kohesive/keplin/blob/master/keplin-maven-resolver/src/main/kotlin/uy/kohesive/keplin/kotlin/script/resolver/maven/MavenResolverAnnotations.kt
@@ -61,9 +76,19 @@ annotation class Repository(val url: String)
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @Repeatable
-annotation class DependsOnMaven(val artifactLocator: String)
+@Deprecated(
+    "@file:DependsOnMaven(artifactCoordinates) is deprecated in favor of @file:DependsOn()",
+    ReplaceWith("@file:DependsOn(artifactCoordinates)"),
+    DeprecationLevel.WARNING
+)
+annotation class DependsOnMaven(val artifactCoordinates: String)
 
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 @Repeatable
+@Deprecated(
+    "@file:MavenRepository(id, url, user, password) is deprecated in favor of @file:Repository()",
+    ReplaceWith("@file:Repository(url, user, password)"),
+    DeprecationLevel.WARNING
+)
 annotation class MavenRepository(val id: String, val url: String, val user: String = "", val password: String = "")
